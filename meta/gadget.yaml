@@ -51,29 +51,29 @@ volumes:
         filesystem-label: ESP 
         size: 768M
         content:
-            - source: local-includes/initrd.img
-              target: initrd.img
-            - source: local-includes/kernel.snap
-              target: kernel.snap
-            - source: local-includes/os.snap
-              target: os.snap
-            - source: local-includes/kernel.img
-              target: kernel.img
-            - source: local-includes/dtbs/apq8016-sbc.dtb
-              target: dtbs/apq8016-sbc.dtb
-            - source: local-includes/recovery/factory/factory_install/etc/systemd/system/devmode-firstboot.service
+            #- source: recovery_part/initrd.img
+            #  target: initrd.img
+            #- source: recovery_part/kernel.snap
+            #  target: kernel.snap
+            #- source: recovery_part/os.snap
+            #  target: os.snap
+            #- source: recovery_part/kernel.img
+            #  target: kernel.img
+            - source: recovery_part/dtbs/apq8016-sbc.dtb
+              target: boot/dtbs/apq8016-sbc.dtb
+            - source: recovery_part/recovery/factory/factory_install/etc/systemd/system/devmode-firstboot.service
               target: recovery/factory/factory_install/etc/systemd/system/devmode-firstboot.service
-            #- source: local-includes/recovery/factory/factory_install/etc/systemd/system/multi-user.target.wants/
+            #- source: recovery_part/recovery/factory/factory_install/etc/systemd/system/multi-user.target.wants/
             #  target: recovery/factory/factory_install/etc/systemd/system/multi-user.target.wants/
-            #- source: local-includes/recovery/factory/factory_install/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #- source: recovery_part/recovery/factory/factory_install/var/lib/devmode-firstboot/devmode-firstboot.sh
             #  target: recovery/factory/factory_install/var/lib/devmode-firstboot/devmode-firstboot.sh
-            #- source: local-includes/recovery/factory/factory_restore/etc/systemd/system/devmode-firstboot.service
+            #- source: recovery_part/recovery/factory/factory_restore/etc/systemd/system/devmode-firstboot.service
             #  target: recovery/factory/factory_restore/etc/systemd/system/devmode-firstboot.service
-            #- source: local-includes/recovery/factory/factory_restore/etc/systemd/system/multi-user.target.wants/
+            #- source: recovery_part/recovery/factory/factory_restore/etc/systemd/system/multi-user.target.wants/
             #  target: recovery/factory/factory_restore/etc/systemd/system/multi-user.target.wants/
-            #- sourec: local-includes/recovery/factory/factory_restore/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #- sourec: recovery_part/recovery/factory/factory_restore/var/lib/devmode-firstboot/devmode-firstboot.sh
             #  target: recovery/factory/factory_restore/var/lib/devmode-firstboot/devmode-firstboot.sh
-            #- source: local-includes/recovery/factory/snaps/
+            #- source: recovery_part/recovery/factory/snaps/
             #  target: recovery/factory/snaps/
-            #- source: local-includes/recovery/factory/snaps-devmode/
+            #- source: recovery_part/recovery/factory/snaps-devmode/
             #  target: recovery/factory/snaps-devmode

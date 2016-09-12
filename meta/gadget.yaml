@@ -1,0 +1,79 @@
+device-tree-origin: kernel
+device-tree: apq8016-sbc.dtb
+volumes:
+  dragonboard:
+    schema: gpt
+    bootloader: u-boot
+    structure:
+      - name: sbl1
+        size: 1048576
+        content:
+            - image: sbl1.mbn
+        type: DEA0BA2C-CBDD-4805-B4F9-F428251C3E98
+      - name: rpm
+        size: 1048576
+        content:
+            - image: rpm.mbn
+        type: 098DF793-D712-413D-9D4E-89D711772228
+      - name: tz
+        size: 1048576
+        content:
+            - image: tz.mbn
+        type: A053AA7F-40B8-4B1C-BA08-2F68AC71A4F4
+      - name: hyp
+        size: 1048576
+        content:
+            - image: hyp.mbn
+        type: E1A6A689-0C8D-4CC6-B4E8-55A4320FBD8A
+      - name: sec
+        size: 1048576
+        content:
+            - image: sec.dat
+        type: 303E6AC3-AF15-4C54-9E9B-D9A8FBECF401
+      - name: aboot
+        size: 2097152
+        content:
+            - image: sdappsboot.mbn
+        type: 400FFDCD-22E0-47E7-9A23-F16ED9382388
+      - name: boot
+        size: 1048576
+        content:
+            - image: u-boot.img
+        type: 20117F86-E985-4357-B9EE-374BC1D8487D
+      - name: system-boot
+        type: 0C,EBD0A0A2-B9E5-4433-87C0-68B6B72699C7
+        filesystem: vfat
+        filesystem-label: system-boot
+        size: 128M
+      - name: recovery
+        type: 0C,0D0235DF-8756-4536-BE67-ADECB302D269
+        filesystem: vfat
+        filesystem-label: ESP 
+        size: 768M
+        content:
+            - source: local-includes/initrd.img
+              target: initrd.img
+            - source: local-includes/kernel.snap
+              target: kernel.snap
+            - source: local-includes/os.snap
+              target: os.snap
+            - source: local-includes/kernel.img
+              target: kernel.img
+            - source: local-includes/dtbs/apq8016-sbc.dtb
+              target: dtbs/apq8016-sbc.dtb
+            - source: local-includes/recovery/factory/factory_install/etc/systemd/system/devmode-firstboot.service
+              target: recovery/factory/factory_install/etc/systemd/system/devmode-firstboot.service
+            #- source: local-includes/recovery/factory/factory_install/etc/systemd/system/multi-user.target.wants/
+            #  target: recovery/factory/factory_install/etc/systemd/system/multi-user.target.wants/
+            #- source: local-includes/recovery/factory/factory_install/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #  target: recovery/factory/factory_install/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #- source: local-includes/recovery/factory/factory_restore/etc/systemd/system/devmode-firstboot.service
+            #  target: recovery/factory/factory_restore/etc/systemd/system/devmode-firstboot.service
+            #- source: local-includes/recovery/factory/factory_restore/etc/systemd/system/multi-user.target.wants/
+            #  target: recovery/factory/factory_restore/etc/systemd/system/multi-user.target.wants/
+            #- sourec: local-includes/recovery/factory/factory_restore/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #  target: recovery/factory/factory_restore/var/lib/devmode-firstboot/devmode-firstboot.sh
+            #- source: local-includes/recovery/factory/snaps/
+            #  target: recovery/factory/snaps/
+            #- source: local-includes/recovery/factory/snaps-devmode/
+            #  target: recovery/factory/snaps-devmode
